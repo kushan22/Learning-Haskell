@@ -6,8 +6,12 @@ import Data.List
 
 --Reverse a list
 reverseList :: [a] -> [a]
-reverseList [] = []
-reverseList (x:xs) = reverse xs ++ [x]
+reverseList l = rev l []
+
+rev :: [a] -> [a] -> [a]
+rev l resultList
+    | null l        = resultList
+    | otherwise         = rev (tail l) ((head l) : resultList)
 
 --Union of Two Lists
 unionList :: (Eq a) => [a] -> [a] -> [a]
@@ -50,6 +54,6 @@ permutation xs = [x:ys | x <- xs, ys <- permutation (delete x xs)]
 
 main :: IO ()
 main = do
-        print (minNum [1,2,3])
+        print (reverseList [1,2,3])
     
 
